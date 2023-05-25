@@ -38,4 +38,12 @@ export const ShopText = styled.p`
 
 export const GoodsHolder = styled(ShopsHolder)`
   margin-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+`;
+
+export const GoodsList = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
 `;
