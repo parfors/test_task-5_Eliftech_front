@@ -8,14 +8,15 @@ export const theme = {
     s: "12px",
     m: "16px",
     l: "28px",
-    xl: "40px",
+    xl: "52px",
   },
   colors: {
-    accent: "#28A745",
+    accent: "#f9d95b",
     white: "#ffffff",
+    gray: "#5a595920",
     dark: "#333333",
     blue: "#0284D0",
-    footer: "#333333",
+    header: "#917e34",
   },
   trFunction: "linear",
 };
