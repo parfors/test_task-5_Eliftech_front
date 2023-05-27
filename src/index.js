@@ -16,7 +16,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/test_task-5_Eliftech_front">
           <ThemeProvider theme={theme}>
             <App />
             <ToastContainer position="top-right" autoClose={400} />

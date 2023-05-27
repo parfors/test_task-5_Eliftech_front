@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://test-task-5-eliftech-back.onrender.com/";
 
 const instance = axios.create({
   baseURL: BASE_URL,
