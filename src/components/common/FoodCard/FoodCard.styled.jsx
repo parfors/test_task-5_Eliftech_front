@@ -78,6 +78,9 @@ export const CardButton = styled.button`
   &:hover {
     background-color: ${(p) => p.theme.colors.header};
   }
+  &.disClass {
+    background-color: #bdb6b6;
+  }
 `;
 
 export const InputWrap = styled.div`
@@ -100,3 +103,5 @@ export const CardDeleteBtn = styled.button`
 `;
 
 export const CardSvg = styled(DelSvg);
+
+export const ButtonsWrap = styled.div``;

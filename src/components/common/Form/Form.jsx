@@ -1,5 +1,9 @@
+import { postOrder } from "api/api";
 import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrders } from "redux/selectors";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 import {
   ContactForm,
   ContactInput,
@@ -8,6 +12,7 @@ import {
   LoginFormError,
   PlaceholderText,
 } from "./Form.styled";
+import { deleteAll } from "redux/orders/ordersSlice";
 
 const initialValues = {
   name: "",
@@ -17,14 +22,33 @@ const initialValues = {
 };
 
 const schema = yup.object().shape({
-  name: yup.string().min(1).max(12).required(),
+  name: yup.string().min(1).max(22).required(),
   email: yup.string().email().required(),
-  phone: yup.number().min(6).max(12).required(),
+  phone: yup.string().min(6).max(22).required(),
   address: yup.string().min(10).max(22).required(),
 });
 
 export default function Form() {
+  const dispatch = useDispatch();
+  const userOrder = useSelector(getOrders);
+
   const submitHandler = (values, actions) => {
+    const body = {
+      ...values,
+      order: userOrder,
+    };
+    if (userOrder.length > 0) {
+      try {
+        postOrder(body);
+        toast.success("Order is submitted");
+        dispatch(deleteAll());
+      } catch (error) {
+        toast.error(`Some error ${error.message}`);
+        console.log(error);
+      }
+    } else {
+      toast.error(`you need to order something`);
+    }
     actions.resetForm();
   };
 
@@ -67,7 +91,7 @@ export default function Form() {
               </InputWrap>
               <InputWrap>
                 <ContactInput
-                  type="text"
+                  type="tel"
                   placeholder=""
                   name="phone"
                   id="name_input"

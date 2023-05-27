@@ -28,8 +28,9 @@ export default function Shop() {
     fetchProducts();
   }, []);
   const [goodsList, setGoodsList] = useState([]);
-  const [selectedShop, setSelectedShop] = useState(0);
+  const [selectedShop, setSelectedShop] = useState("");
   const [renderFood, setRenderFood] = useState([]);
+  const [selectedMagazine, setSelectedMagazine] = useState("");
 
   let filteredFood = [];
 
@@ -67,15 +68,21 @@ export default function Shop() {
           </ShopsHolder>
           <GoodsHolder>
             <GoodsList>
-              {renderFood.map(({ _id, name, description, price, img }) => (
+              {renderFood.map((order) => (
                 <FoodCard
-                  key={_id}
-                  id={_id}
-                  name={name}
-                  description={description}
-                  price={price}
+                  key={order._id}
+                  id={order._id}
+                  name={order.name}
+                  description={order.description}
+                  price={order.price}
                   shop={true}
-                  img={img}
+                  img={order.img}
+                  item={order.item}
+                  order={order}
+                  setSelectedMagazine={setSelectedMagazine}
+                  disabled={
+                    selectedMagazine !== "" && selectedMagazine !== order.shop
+                  }
                 />
               ))}
             </GoodsList>

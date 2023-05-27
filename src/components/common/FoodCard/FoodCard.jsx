@@ -1,5 +1,12 @@
 import { ReactComponent as DelSvg } from "images/delete.svg";
+import { useDispatch } from "react-redux";
 import {
+  addProduct,
+  deleteProduct,
+  updateItemQuantity,
+} from "redux/orders/ordersSlice";
+import {
+  ButtonsWrap,
   CardButton,
   CardDeleteBtn,
   CardDescription,
@@ -15,9 +22,63 @@ import {
   InputWrap,
 } from "./FoodCard.styled";
 
-export default function FoodCard({ id, name, description, price, shop, img }) {
+export default function FoodCard({
+  id,
+  name,
+  description,
+  price,
+  shop,
+  img,
+  order,
+  clickHandler,
+  location,
+  setSelectedMagazine,
+  disabled,
+  history,
+}) {
+  const dispatch = useDispatch();
+
+  const buttons = (
+    <ButtonsWrap>
+      {shop ? (
+        <CardButton
+          onClick={() => {
+            setSelectedMagazine(order.shop);
+            dispatch(addProduct(order));
+          }}
+          className={disabled ? "disClass" : ""}
+          disabled={disabled}
+          type="button"
+        >
+          Add to Cart
+        </CardButton>
+      ) : (
+        <InputWrap>
+          <CardInput
+            onChange={(e) => {
+              const quantity = e.target.value;
+              dispatch(updateItemQuantity({ id, quantity }));
+            }}
+            type="number"
+            min="1"
+            max="20"
+          />
+          <CardDeleteBtn onClick={() => dispatch(deleteProduct(id))}>
+            <DelSvg styles={{ width: "40px" }} />{" "}
+          </CardDeleteBtn>
+        </InputWrap>
+      )}
+    </ButtonsWrap>
+  );
+
   return (
-    <CardItem>
+    <CardItem
+      onClick={() => {
+        if (!shop) {
+          clickHandler(location);
+        }
+      }}
+    >
       <CardId>ID:{id}</CardId>
       <CardInfoWrap>
         <CardImgWrap>
@@ -29,16 +90,7 @@ export default function FoodCard({ id, name, description, price, shop, img }) {
         </DescriptionWrap>
       </CardInfoWrap>
       <CardPrice>{price} $</CardPrice>
-      {shop ? (
-        <CardButton type="button">Add to Cart</CardButton>
-      ) : (
-        <InputWrap>
-          <CardInput type="number" min="1" max="20" />
-          <CardDeleteBtn>
-            <DelSvg styles={{ width: "40px" }} />{" "}
-          </CardDeleteBtn>
-        </InputWrap>
-      )}
+      {!history && buttons}
     </CardItem>
   );
 }

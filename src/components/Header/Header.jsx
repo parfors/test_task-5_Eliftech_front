@@ -15,6 +15,7 @@ export default function Header() {
           <HeaderNav>
             <HeaderLink to={"shop"}>Shop</HeaderLink>
             <HeaderLink to={"cart"}>Shopping Cart</HeaderLink>
+            <HeaderLink to={"history"}>History</HeaderLink>
           </HeaderNav>
           <LogoHolder to={"/"}>
             <HeaderLogo />
