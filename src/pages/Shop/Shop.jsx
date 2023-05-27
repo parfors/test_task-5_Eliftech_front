@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   GoodsHolder,
   GoodsList,
@@ -9,12 +9,42 @@ import {
   ShopText,
   ShopsHolder,
 } from "./Shop.styled";
-import shopList from "assets/fonts/data/shopList";
+import shopList from "assets/data/shopList";
 import FoodCard from "components/common/FoodCard/FoodCard";
-import goodsList from "assets/fonts/data/goodsList";
+import { getAllProducts } from "api/api";
 
 export default function Shop() {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const goods = await getAllProducts();
+        setGoodsList(Array.isArray(goods) ? goods : []);
+        setRenderFood(Array.isArray(goods) ? goods : []);
+      } catch (error) {
+        console.log("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+  const [goodsList, setGoodsList] = useState([]);
   const [selectedShop, setSelectedShop] = useState(0);
+  const [renderFood, setRenderFood] = useState([]);
+
+  let filteredFood = [];
+
+  const filterFood = (name) => {
+    filteredFood = goodsList;
+
+    if (name === "All") {
+    } else {
+      filteredFood = goodsList.filter((item) => {
+        return item.shop === name;
+      });
+    }
+    setRenderFood(filteredFood);
+  };
+
   return (
     <>
       <ShopSection>
@@ -22,7 +52,7 @@ export default function Shop() {
           <ShopsHolder>
             <ShopList>
               {shopList.map(({ id, name }) => (
-                <ShopItem key={id}>
+                <ShopItem onClick={() => filterFood(name)} key={id}>
                   <ShopText
                     className={selectedShop === id ? "active" : null}
                     onClick={(e) => {
@@ -37,13 +67,15 @@ export default function Shop() {
           </ShopsHolder>
           <GoodsHolder>
             <GoodsList>
-              {goodsList.map(({ id, name, description, price }) => (
+              {renderFood.map(({ _id, name, description, price, img }) => (
                 <FoodCard
-                  id={id}
+                  key={_id}
+                  id={_id}
                   name={name}
                   description={description}
                   price={price}
                   shop={true}
+                  img={img}
                 />
               ))}
             </GoodsList>

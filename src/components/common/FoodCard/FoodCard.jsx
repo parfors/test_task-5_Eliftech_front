@@ -1,4 +1,3 @@
-import BurgerImg from "images/burger.jpg";
 import { ReactComponent as DelSvg } from "images/delete.svg";
 import {
   CardButton,
@@ -16,13 +15,13 @@ import {
   InputWrap,
 } from "./FoodCard.styled";
 
-export default function FoodCard({ id, name, description, price, shop }) {
+export default function FoodCard({ id, name, description, price, shop, img }) {
   return (
     <CardItem>
       <CardId>ID:{id}</CardId>
       <CardInfoWrap>
         <CardImgWrap>
-          <CardImg src={BurgerImg} />
+          <CardImg src={img} />
         </CardImgWrap>
         <DescriptionWrap>
           <CardName>{name}</CardName>

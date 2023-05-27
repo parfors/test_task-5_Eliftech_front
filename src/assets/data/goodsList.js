@@ -1,6 +1,9 @@
+import BurgerImg from "images/burger.jpg";
+
 const goodsList = [
   {
     id: 0,
+    img: "https://loremflickr.com/320/240/food",
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -9,6 +12,7 @@ const goodsList = [
   },
   {
     id: 1,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -17,6 +21,7 @@ const goodsList = [
   },
   {
     id: 2,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -25,6 +30,7 @@ const goodsList = [
   },
   {
     id: 3,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -33,6 +39,7 @@ const goodsList = [
   },
   {
     id: 4,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -41,6 +48,7 @@ const goodsList = [
   },
   {
     id: 5,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -49,6 +57,7 @@ const goodsList = [
   },
   {
     id: 6,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -57,6 +66,7 @@ const goodsList = [
   },
   {
     id: 7,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -65,6 +75,7 @@ const goodsList = [
   },
   {
     id: 8,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",
@@ -73,6 +84,7 @@ const goodsList = [
   },
   {
     id: 9,
+    img: BurgerImg,
     name: "Burger",
     description:
       "Corrupti adipisci facere atque eaque explicabo quam, voluptatibus, fugiat ipsa quasi recusandae a?",

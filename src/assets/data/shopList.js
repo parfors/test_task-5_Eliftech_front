@@ -9,7 +9,7 @@ const shopList = [
   },
   {
     id: 2,
-    name: "CFC",
+    name: "KFC",
   },
   {
     id: 3,

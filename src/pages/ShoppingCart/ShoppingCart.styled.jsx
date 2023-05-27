@@ -15,7 +15,8 @@ export const CartFormHolder = styled(ShopsHolder)`
 `;
 
 export const CartFormTitle = styled.h3`
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 `;
 
 export const CartItemsHolder = styled(GoodsHolder)``;
