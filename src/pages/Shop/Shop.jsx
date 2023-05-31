@@ -12,8 +12,12 @@ import {
 import shopList from "assets/data/shopList";
 import FoodCard from "components/common/FoodCard/FoodCard";
 import { getAllProducts } from "api/api";
+import { useSelector } from "react-redux";
+import { getOrders } from "redux/selectors";
 
 export default function Shop() {
+  const userOrders = useSelector(getOrders);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -27,6 +31,13 @@ export default function Shop() {
 
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (userOrders[0]?.shop) {
+      setSelectedMagazine(userOrders[0].shop);
+    }
+  }, [userOrders]);
+
   const [goodsList, setGoodsList] = useState([]);
   const [selectedShop, setSelectedShop] = useState("");
   const [renderFood, setRenderFood] = useState([]);

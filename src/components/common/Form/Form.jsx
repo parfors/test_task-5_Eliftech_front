@@ -5,12 +5,14 @@ import { getOrders } from "redux/selectors";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import {
+  ButtonWrap,
   ContactForm,
   ContactInput,
   FormBtn,
   InputWrap,
   LoginFormError,
   PlaceholderText,
+  TotalPrice,
 } from "./Form.styled";
 import { deleteAll } from "redux/orders/ordersSlice";
 
@@ -31,6 +33,11 @@ const schema = yup.object().shape({
 export default function Form() {
   const dispatch = useDispatch();
   const userOrder = useSelector(getOrders);
+
+  const totalPrice = userOrder.reduce((acc, item) => {
+    const value = acc + item.price * (item.amount ? item.amount : 1);
+    return +value.toFixed(2);
+  }, 0);
 
   const submitHandler = (values, actions) => {
     const body = {
@@ -113,8 +120,10 @@ export default function Form() {
                 </PlaceholderText>
                 <LoginFormError name="address" />
               </InputWrap>
-
-              <FormBtn type="submit">Send</FormBtn>
+              <ButtonWrap>
+                <TotalPrice>Total price: {totalPrice} $</TotalPrice>
+                <FormBtn type="submit">Send</FormBtn>
+              </ButtonWrap>
             </ContactForm>
           );
         }}

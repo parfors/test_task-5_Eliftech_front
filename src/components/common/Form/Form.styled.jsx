@@ -2,6 +2,7 @@
 import { ErrorMessage, Field, Form } from "formik";
 import styled from "styled-components";
 import { ReactComponent as ErrorSvg } from "images/warning.svg";
+import { CartFormTitle } from "pages/ShoppingCart/ShoppingCart.styled";
 
 export const ContactForm = styled(Form)`
   padding: 0 8px;
@@ -84,3 +85,10 @@ export const LoginFormError = ({ name }) => {
     />
   );
 };
+
+export const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const TotalPrice = styled(CartFormTitle)``;
