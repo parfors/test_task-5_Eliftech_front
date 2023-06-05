@@ -21,6 +21,7 @@ import {
   DescriptionWrap,
   InputWrap,
 } from "./FoodCard.styled";
+import { useState } from "react";
 
 export default function FoodCard({
   id,
@@ -37,6 +38,7 @@ export default function FoodCard({
   history,
 }) {
   const dispatch = useDispatch();
+  const [amount, setAmount] = useState(1);
 
   const buttons = (
     <ButtonsWrap>
@@ -57,11 +59,13 @@ export default function FoodCard({
           <CardInput
             onChange={(e) => {
               const quantity = e.target.value;
+              setAmount(quantity);
               dispatch(updateItemQuantity({ id, quantity }));
             }}
             type="number"
             min="1"
             max="20"
+            value={amount}
           />
           <CardDeleteBtn onClick={() => dispatch(deleteProduct(id))}>
             <DelSvg styles={{ width: "40px" }} />{" "}
